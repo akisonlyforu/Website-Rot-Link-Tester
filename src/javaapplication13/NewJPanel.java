@@ -28,6 +28,7 @@ public class NewJPanel extends javax.swing.JPanel {
         b1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        l = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -63,6 +64,8 @@ public class NewJPanel extends javax.swing.JPanel {
         jLabel2.setText("Enter Website Link Here -");
         add(jLabel2);
         jLabel2.setBounds(47, 69, 207, 28);
+        add(l);
+        l.setBounds(100, 190, 120, 14);
     }// </editor-fold>//GEN-END:initComponents
 
      public ArrayList<String> generate(String url) throws Exception
@@ -136,6 +139,8 @@ public class NewJPanel extends javax.swing.JPanel {
             FileWriter fw = new FileWriter("Links.txt");
             NewJPanel t = new NewJPanel();
             String url = tf.getText();
+            try
+            {
             ArrayList<String> al = t.generate(url);
             for(int i = 0 ; i < al.size(); i++)
             {
@@ -143,6 +148,12 @@ public class NewJPanel extends javax.swing.JPanel {
                 System.out.println(al.get(i));
             }
             fw.close();
+            l.setText("Completed");
+            }
+            catch(Exception e)
+            {
+                l.setText("Invalid Domain URL");
+            }
         }
         catch(Exception e)
         {
@@ -151,7 +162,8 @@ public class NewJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_m
 
     private void b1m(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b1m
-        tf.setText("");
+            l.setText("");
+            tf.setText("");
     }//GEN-LAST:event_b1m
 
 
@@ -161,6 +173,7 @@ public class NewJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel l;
     private javax.swing.JTextField tf;
     // End of variables declaration//GEN-END:variables
 }
